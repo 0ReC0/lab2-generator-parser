@@ -1,4 +1,4 @@
-const { create, convert } = require("xmlbuilder2");
+const { create } = require("xmlbuilder2");
 const { readFileSync, writeFile} = require("fs");
 const { Door } = require("../models/door");
 const jsdom = require("jsdom");
