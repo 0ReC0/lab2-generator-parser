@@ -131,17 +131,17 @@ class Generator {
   getDateTimeNowString() {
     return Date.now().toString();
   }
-  runTests() {
-    let xmlStr = this.generateXMLString(3);
+  runTests(countXMLChuncks, countJSONChuncks, countHTMLChuncks) {
+    let xmlStr = this.generateXMLString(countXMLChuncks);
     this.createXMLFile("xmlData", xmlStr);
 
-    let jsonStr = this.generateJSONString(3);
+    let jsonStr = this.generateJSONString(countJSONChuncks);
     this.createJSONFile("JSONData", jsonStr);
 
-    let htmlStr = this.generateHTMLString(3);
+    let htmlStr = this.generateHTMLString(countHTMLChuncks);
     this.createHTMLFile("HtmlData", htmlStr);
   }
 }
 
 const generator = new Generator();
-generator.runTests();
+generator.runTests(3, 3, 3);
