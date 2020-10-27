@@ -1,4 +1,6 @@
 # lab2-generator-parser
+## Libs 
+1. [xmlbuilder2](https://github.com/oozcitak/xmlbuilder2)
 ## How to initialize
 1. Install Node.js
 2. Run `npm install` in project folder
