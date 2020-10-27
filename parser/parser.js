@@ -1,5 +1,5 @@
 const { create, convert } = require("xmlbuilder2");
-const { readFileSync } = require("fs");
+const { readFileSync, writeFile} = require("fs");
 const { Door } = require("../models/door");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -16,8 +16,8 @@ class Parser {
     const serializedXML = doc.end({ format: "json", prettyPrint: true });
     return serializedXML;
   }
-  parseXMLFile(fileName) {
-    return readFileSync(`./data/${fileName}.xml`, {
+  readXMLFile(fileName) {
+    return readFileSync(`./data/generated/${fileName}.xml`, {
       encoding: "utf8",
       flag: "r",
     });
@@ -34,38 +34,52 @@ class Parser {
         }
         doorData.push(doorChunk)
     }
-    return doorData;
+    return JSON.stringify(doorData);
   }
-  parseHTMLFile(fileName) {
-    return readFileSync(`./data/${fileName}.html`, {
+  readHTMLFile(fileName) {
+    return readFileSync(`./data/generated/${fileName}.html`, {
       encoding: "utf8",
       flag: "r",
     });
   }
-  parseJSONStringIntoObject(jsonString) {
-    return JSON.parse(jsonString);
+  parseJSONString(jsonString) {
+    // return JSON.parse(jsonString);
+    return jsonString;
   }
-  parseJSONFile(fileName) {
-    return readFileSync(`./data/${fileName}.json`, {
+  readJSONFile(fileName) {
+    return readFileSync(`./data/generated/${fileName}.json`, {
       encoding: "utf8",
       flag: "r",
     });
+  }
+  saveFile(fileName, data) {
+    writeFile(`./data/parsed/${fileName}`, data, (err) => {
+      // throws an error, you could also catch it here
+      if (err) throw err;
+
+      // success case, the file was saved
+      console.log(`./data/parsed/${fileName} saved!`);
+    });
+  }
+  runTests(){
+      console.log("!------XMLParsing\n");
+      let xmlStr = this.readXMLFile("xmlData");
+      this.saveFile("xmlData.json",this.parseXMLString(xmlStr));
+      console.log("\n------\n\n");
+      
+      console.log("!------JSONParsing\n");
+      let jsonStr = this.readJSONFile("JSONData");
+      this.saveFile("JSONData.json",this.parseJSONString(jsonStr));
+      console.log("\n------\n\n");
+      
+      console.log("!------HTMLParsing\n");
+      let htmlStr = this.readHTMLFile("HtmlData");
+      this.saveFile("HtmlData.json",this.parseHTMLString(htmlStr));
+      console.log("\n------\n\n");
+
   }
 }
 
 const parser = new Parser();
+parser.runTests();
 
-console.log("!------XMLParsing\n");
-let xmlStr = parser.parseXMLFile("xmlData");
-console.log(parser.parseXMLString(xmlStr));
-console.log("\n------\n\n");
-
-console.log("!------JSONParsing\n");
-let jsonStr = parser.parseJSONFile("JSONData");
-console.log(parser.parseJSONStringIntoObject(jsonStr));
-console.log("\n------\n\n");
-
-console.log("!------HTMLParsing\n");
-let htmlStr = parser.parseHTMLFile("HtmlData");
-console.log(parser.parseHTMLString(htmlStr));
-console.log("\n------\n\n");

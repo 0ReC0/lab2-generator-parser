@@ -1,0 +1,27 @@
+{
+  "doorData": {
+    "data": [
+      {
+        "@id": "1",
+        "@doorState": "false",
+        "@dateTime": "1603813563160",
+        "@name": "door1",
+        "@publicKey": "RW5jb2RlIGEgc3RyaW5n"
+      },
+      {
+        "@id": "1",
+        "@doorState": "true",
+        "@dateTime": "1603813563160",
+        "@name": "door1",
+        "@publicKey": "RW5jb2RlIGEgc3RyaW5n"
+      },
+      {
+        "@id": "1",
+        "@doorState": "false",
+        "@dateTime": "1603813563160",
+        "@name": "door1",
+        "@publicKey": "RW5jb2RlIGEgc3RyaW5n"
+      }
+    ]
+  }
+}

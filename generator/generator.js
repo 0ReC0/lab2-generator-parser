@@ -35,12 +35,12 @@ class Generator {
     return xml;
   }
   createXMLFile(fileName, xmlString) {
-    writeFile(`./data/${fileName}.xml`, xmlString, (err) => {
+    writeFile(`./data/generated/${fileName}.xml`, xmlString, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
       // success case, the file was saved
-      console.log(`./data/${fileName}.xml saved!`);
+      console.log(`./data/generated/${fileName}.xml saved!`);
     });
   }
   generateHTMLString(
@@ -88,12 +88,12 @@ class Generator {
     return html.renderHTML();
   }
   createHTMLFile(fileName, htmlString) {
-    writeFile(`./data/${fileName}.html`, htmlString, (err) => {
+    writeFile(`./data/generated/${fileName}.html`, htmlString, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
       // success case, the file was saved
-      console.log(`./data/${fileName}.html saved!`);
+      console.log(`./data/generated/${fileName}.html saved!`);
     });
   }
   generateJSONString(
@@ -117,12 +117,12 @@ class Generator {
     return JSON.stringify(doorData);
   }
   createJSONFile(fileName, jsonString) {
-    writeFile(`./data/${fileName}.json`, jsonString, (err) => {
+    writeFile(`./data/generated/${fileName}.json`, jsonString, (err) => {
       // throws an error, you could also catch it here
       if (err) throw err;
 
       // success case, the file was saved
-      console.log(`./data/${fileName}.json saved!`);
+      console.log(`./data/generated/${fileName}.json saved!`);
     });
   }
   getRandomStateBool() {
@@ -131,14 +131,17 @@ class Generator {
   getDateTimeNowString() {
     return Date.now().toString();
   }
+  runTests() {
+    let xmlStr = this.generateXMLString(3);
+    this.createXMLFile("xmlData", xmlStr);
+
+    let jsonStr = this.generateJSONString(3);
+    this.createJSONFile("JSONData", jsonStr);
+
+    let htmlStr = this.generateHTMLString(3);
+    this.createHTMLFile("HtmlData", htmlStr);
+  }
 }
 
 const generator = new Generator();
-let xmlStr = generator.generateXMLString(3);
-generator.createXMLFile("xmlData", xmlStr);
-
-let jsonStr = generator.generateJSONString(3);
-generator.createJSONFile("JSONData", jsonStr);
-
-let htmlStr = generator.generateHTMLString(3);
-generator.createHTMLFile("HtmlData", htmlStr);
+generator.runTests();
