@@ -12,8 +12,8 @@ class Door {
   name;
   publicKey;
 
-  getFieldsNames() {
-    return ["id", "doorState", "dateTime", "name", "publicKey"];
-  }
+//   getFieldsNames() {
+//     return ["id", "doorState", "dateTime", "name", "publicKey"];
+//   }
 }
 module.exports = { Door };
