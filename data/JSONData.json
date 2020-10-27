@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "doorState": true,
+      "dateTime": "1603756156170",
+      "name": "door1"
+    },
+    {
+      "id": 1,
+      "doorState": false,
+      "dateTime": "1603756156170",
+      "name": "door1"
+    },
+    { "id": 1, "doorState": true, "dateTime": "1603756156170", "name": "door1" }
+  ]
+}
